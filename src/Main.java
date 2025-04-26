@@ -1,5 +1,4 @@
-// Edited by JunRong for Assignment 2
-
+// Edited by JunRong test Assignment 2 
 import javax.swing.*;
 
 public class Main {
