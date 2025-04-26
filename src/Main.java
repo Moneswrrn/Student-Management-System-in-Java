@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Edited by JunRong test Assignment 2 
+=======
+
+>>>>>>> 1e077dbe7516f46b7bc6783df95c3c90dd202213
 import javax.swing.*;
 
 public class Main {
