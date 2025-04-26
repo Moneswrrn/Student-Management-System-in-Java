@@ -6,13 +6,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Table {
 
-     /**
-     * Builds a table model from the given ResultSet.
-     * 
-     * @param resultSet The ResultSet containing data from a database.
-     * @return A DefaultTableModel containing the data and column names.
-     * @throws SQLException If any database access error occurs.
-     */
 
     DefaultTableModel buildTableModel(ResultSet resultSet) throws SQLException {
         ResultSetMetaData metaData = resultSet.getMetaData(); // get metadata from the ResultSet like information about columns
@@ -31,6 +24,7 @@ public class Table {
         // Get table data
         Vector<Vector<Object>> tableData = new Vector<Vector<Object>>();
 
+        // Iterate through the ResultSet to get row data
         while (resultSet.next()) {
             Vector<Object> row = new Vector<Object>();
 
