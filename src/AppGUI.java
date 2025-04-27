@@ -1,3 +1,4 @@
+//Edited by Teoh Vilson (Assignment 2)
 import javax.swing.*;
 
 import java.awt.event.*;
@@ -79,6 +80,7 @@ public class AppGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         dbConnect db = new dbConnect();
         Connection conn;
+        // Provides error message when database is not found
         try {
             conn = db.getConnection();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -102,7 +104,7 @@ public class AppGUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         } else if (e.getSource() == displayButton) {
-            // Display all sdata in database
+            // Display all student data in database
             String sql = "SELECT * FROM sdata";
 
             try {
@@ -115,7 +117,7 @@ public class AppGUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         } else if (e.getSource() == sortButton) {
-            // Sort sdata by selected column
+            // Sort student data by selected column
             String[] options = {"First Name", "Last Name", "Major"};
             int choice = JOptionPane.showOptionDialog(null, "Sort by:", "Sort", JOptionPane.DEFAULT_OPTION,
                     JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
