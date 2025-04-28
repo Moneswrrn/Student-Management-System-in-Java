@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentDatabaseTest {
 
+
     @BeforeAll
     static void setup() {
         // No database setup needed now, so you can remove database connection code
