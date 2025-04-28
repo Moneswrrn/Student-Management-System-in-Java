@@ -10,6 +10,20 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD:    
+          MYSQL_DATABASE: student_data   
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -23,8 +37,21 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
+    - name: Wait for MySQL to be ready
+      run: |
+        echo "Waiting for MySQL to be ready..."
+        until mysql -h 127.0.0.1 -u root -proot_password -e "SHOW DATABASES;" > /dev/null 2>&1; do
+          echo "Waiting for MySQL to be ready..."
+          sleep 5
+        done
+        echo "MySQL is up and running."
+
     - name: Run tests with Maven
-      run: mvn test -DskipTests
+      env:
+        DB_URL: jdbc:mysql://127.0.0.1:3306/student_data
+        DB_USERNAME: root
+        DB_PASSWORD:   
+      run: mvn test
 
     - name: Upload test reports
       uses: actions/upload-artifact@v4
