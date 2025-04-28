@@ -16,7 +16,7 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD:    
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: student_data   
         options: >-
           --health-cmd="mysqladmin ping --silent"
@@ -50,7 +50,7 @@ jobs:
       env:
         DB_URL: jdbc:mysql://127.0.0.1:3306/student_data
         DB_USERNAME: root
-        DB_PASSWORD:   
+        DB_PASSWORD: ""
       run: mvn test
 
     - name: Upload test reports
